@@ -25,10 +25,10 @@ interface HomePageClientProps {
 
 // Rich default mock data for fallback
 const MOCK_SPORTS: Sport[] = [
-  { id: 1, name: 'Shuttle Badminton Coaching', slug: 'badminton', description: 'Our primary focus. We offer certified professional badminton coaching for children and youth under Kottayam District Badminton Association guidelines. Ideal for developing tactical badminton skills.', schedule: 'Mon-Sat: 6:00 AM - 9:00 AM, 4:00 PM - 8:00 PM', image: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80&w=800', order: 1 },
-  { id: 2, name: 'Football turf & Training', slug: 'football', description: 'Progressive soccer drills, technical training, and matches on our high-quality turf area for kids and youth.', schedule: 'Wed, Fri, Sat: 4:30 PM - 6:30 PM', image: 'https://images.unsplash.com/photo-1541252260730-0412e8e2108e?auto=format&fit=crop&q=80&w=800', order: 2 },
-  { id: 3, name: 'Cricket Academy Nets', slug: 'cricket', description: 'Cricket bowling and batting practices with professional equipment and dedicated coaching staff.', schedule: 'Tue, Thu: 4:00 PM - 6:30 PM', image: 'https://images.unsplash.com/photo-1531415080290-bc9852f69f3a?auto=format&fit=crop&q=80&w=800', order: 3 },
-  { id: 4, name: 'Tennis Coaching Programs', slug: 'tennis', description: 'Professional lessons for tennis enthusiasts, focused on technical shots, stamina building, and match coordination.', schedule: 'Mon, Wed, Fri: 6:30 AM - 8:30 AM', image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=800', order: 4 }
+  { id: 1, name: 'Shuttle Badminton Coaching', slug: 'shuttle-badminton-coaching', description: 'Our primary focus. We offer certified professional badminton coaching for children and youth under Kottayam District Badminton Association guidelines. Ideal for developing tactical badminton skills.', schedule: 'Mon-Sat: 6:00 AM - 9:00 AM, 4:00 PM - 8:00 PM', image: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80&w=800', order: 1 },
+  { id: 2, name: 'Football turf & Training', slug: 'football-turf-training', description: 'Progressive soccer drills, technical training, and matches on our high-quality turf area for kids and youth.', schedule: 'Wed, Fri, Sat: 4:30 PM - 6:30 PM', image: 'https://images.unsplash.com/photo-1508083460982-28b3207400d2?auto=format&fit=crop&q=80&w=800', order: 2 },
+  { id: 3, name: 'Cricket Academy Nets', slug: 'cricket-academy-nets', description: 'Cricket bowling and batting practices with professional equipment and dedicated coaching staff.', schedule: 'Tue, Thu: 4:00 PM - 6:30 PM', image: 'https://images.unsplash.com/photo-1607734834519-d8576ae60ea6?auto=format&fit=crop&q=80&w=800', order: 3 },
+  { id: 4, name: 'Tennis Coaching Programs', slug: 'tennis-coaching-programs', description: 'Professional lessons for tennis enthusiasts, focused on technical shots, stamina building, and match coordination.', schedule: 'Mon, Wed, Fri: 6:30 AM - 8:30 AM', image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=800', order: 4 }
 ];
 
 const MOCK_COACHES: Coach[] = [
@@ -95,7 +95,7 @@ export default function HomePageClient({
 
   const getSportImage = (sport: Sport): string => {
     if (!sport.image || sport.image.includes('placeholder') || sport.image.includes('gif')) {
-      const mock = MOCK_SPORTS.find(s => s.slug === sport.slug);
+      const mock = MOCK_SPORTS.find(s => s.slug === sport.slug || s.name.toLowerCase() === sport.name.toLowerCase());
       return (mock && mock.image) ? mock.image : 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80&w=800';
     }
     return getFullImageUrl(sport.image);
