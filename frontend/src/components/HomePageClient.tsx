@@ -506,45 +506,83 @@ export default function HomePageClient({
             ))}
           </StaggerContainer>
         </div>
-      </section>
-
-      {/* 4.5 TEAM MEMBERS (COACHES) SECTION */}
+      </section>      {/* 4.5 TEAM MEMBERS (OFFICE BEARERS) SECTION */}
       <section id="coaches" className="py-24 bg-white border-t border-gray-100">
         <div className="px-4 md:px-8 lg:px-[80px] xl:px-[230px]">
-          <div className="mb-12 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 bg-[#F2F2F2] rounded-full px-3 py-1 mb-3 border border-[#D50C3A]">
-              <span className="w-4 h-4 bg-[#D50C3A] rounded-full"></span>
-              <span className="text-gray-900 text-sm font-semibold">Our Team</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight uppercase font-montserrat">
-              Professional Coaches
+          {/* Centered Heading exactly matching screenshot */}
+          <div className="text-center mb-16 flex flex-col items-center">
+            <span className="text-xs font-bold text-[#ff8a00] uppercase tracking-widest mb-3 font-montserrat">
+              OUR STRONGEST TEAM
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight font-montserrat uppercase">
+              Office Bearers
             </h2>
-            <div className="w-full border-b-2 border-[#E5003A] mt-4"></div>
+            <div className="w-12 h-1 bg-[#ff8a00] mt-4" />
           </div>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            {coaches.map((coach) => (
+          {/* Office Bearers Grid matching screenshot */}
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12 max-w-6xl mx-auto">
+            {[
+              {
+                id: 1,
+                name: clubDetails?.president_name || 'Abey Abraham',
+                role: 'HON. PRESIDENT',
+                image: getFullImageUrl(clubDetails?.president_photo) || '/images/president.jpg',
+                color: '#ff8a00'
+              },
+              {
+                id: 2,
+                name: clubDetails?.secretary_name || 'G.Prasanth',
+                role: 'HON. SECRETARY',
+                image: getFullImageUrl(clubDetails?.secretary_photo) || '/images/prasanth.jpg',
+                color: '#272727'
+              },
+              {
+                id: 3,
+                name: 'Raju.K.D',
+                role: 'HON. TREASURER',
+                image: '/images/raju.jpg',
+                color: '#ff8a00'
+              }
+            ].map((bearer) => (
               <div 
-                key={coach.id}
-                className="bg-gray-50 border border-gray-150 rounded-2xl overflow-hidden shadow-sm flex flex-col md:flex-row h-full hover:shadow-md transition-all duration-300"
+                key={bearer.id}
+                className="flex flex-col items-center group"
               >
-                <div className="md:w-1/3 h-64 md:h-full relative shrink-0">
+                {/* Image Container with Decorative Triangles */}
+                <div className="relative w-full max-w-[280px] aspect-[3/4] bg-gray-100 overflow-visible shadow-sm">
+                  {/* Left Triangle */}
+                  <div 
+                    className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-0 h-0 border-y-[12px] border-y-transparent"
+                    style={{
+                      borderRightWidth: '12px',
+                      borderRightColor: bearer.color
+                    }}
+                  />
+                  {/* Right Triangle */}
+                  <div 
+                    className="absolute right-[-12px] top-1/2 -translate-y-1/2 w-0 h-0 border-y-[12px] border-y-transparent"
+                    style={{
+                      borderLeftWidth: '12px',
+                      borderLeftColor: bearer.color
+                    }}
+                  />
+                  
+                  {/* Main Portrait Photo */}
                   <img 
-                    src={getCoachImage(coach)} 
-                    alt={coach.name} 
-                    className="w-full h-full object-cover" 
+                    src={bearer.image} 
+                    alt={bearer.name} 
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" 
                   />
                 </div>
-                <div className="p-6 md:p-8 flex flex-col justify-between flex-1">
-                  <div>
-                    <span className="text-[10px] font-bold text-[#D50C3A] uppercase tracking-widest bg-[#D50C3A]/10 px-2 py-1 rounded">
-                      {coach.experience_years}+ Years Experience
-                    </span>
-                    <h3 className="text-xl font-bold text-gray-900 mt-3 font-montserrat">{coach.name}</h3>
-                    <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-1">{coach.specialty}</p>
-                    <p className="text-xs text-gray-550 leading-relaxed mt-4 text-justify">{coach.bio}</p>
-                  </div>
-                </div>
+
+                {/* Name & Role */}
+                <h3 className="text-xl font-bold text-gray-900 mt-6 font-montserrat text-center">
+                  {bearer.name}
+                </h3>
+                <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-2 text-center">
+                  {bearer.role}
+                </p>
               </div>
             ))}
           </StaggerContainer>
